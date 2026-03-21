@@ -11,4 +11,8 @@ export class LinuxAdapter implements IOperatingSystem {
         console.log('[Linux] Закрываю Spotify...');
         exec('killall -9 spotify');
     }
+
+    setVolume(level: number): void {
+        exec(`pactl set-sink-volume @DEFAULT_SINK@ ${level}%`);
+    }
 }

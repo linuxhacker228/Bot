@@ -10,4 +10,8 @@ export class SpotifyService  {
     public closeSpotify(): void {
         this._os.closeSpotify();
     }
+
+    public setVolume(level: number): void {
+        this._os.setVolume(level);
+    }
 }

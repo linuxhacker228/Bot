@@ -11,6 +11,8 @@ export class MenuCommand extends Command {
             .text('Запустить YouTube', 'action_youtube')
             .row()
             .text('Погода', 'action_weather')
+            .row()
+            .text('Установить громкость', 'action_volume')
             .row();
 
         ctx.reply('Пульт управления ПК:', { reply_markup: keyboard });

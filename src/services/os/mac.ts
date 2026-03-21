@@ -11,4 +11,8 @@ export class MacAdapter implements IOperatingSystem {
         console.log('[Mac] Закрываю Spotify...');
         exec('killall Spotify');
     }
+
+    setVolume(level: number): void {
+        exec(`osascript -e "set volume output volume ${level}"`);
+    }
 }

@@ -13,6 +13,8 @@ import { YoutubeCallback } from "./bot/callbacks/action.youtube";
 import { YoutubeQueryHandler } from "./bot/callbacks/youtube.query";
 import { WeatherCallback } from "./bot/callbacks/action.weather";
 import { WeatherQueryHandler } from "./bot/callbacks/weather.query";
+import { VolumeCallback } from "./bot/callbacks/action.volume";
+import { VolumeQueryHandler } from "./bot/callbacks/volume.query";
 import { Weather } from "./services/weather";
 import { IOperatingSystem } from "./typings";
 import { MacAdapter } from "./services/os/mac";
@@ -58,14 +60,16 @@ const startBot = () => {
 
     const youtubeQueryHandler = new YoutubeQueryHandler(youtubeService);
     const weatherQueryHandler = new WeatherQueryHandler(weatherService);
+    const volumeQueryHandler = new VolumeQueryHandler(spotifyControl);
 
     const playCallback = new PlayCallback(spotifyControl);
     const youtubeCallback = new YoutubeCallback(youtubeQueryHandler);
     const weatherCallback = new WeatherCallback(weatherQueryHandler);
+    const volumeCallback = new VolumeCallback(volumeQueryHandler);
 
     const allCommands = [startCmd, playCmd, menuCmd];
-    const allCallbacks = [playCallback, youtubeCallback, weatherCallback];
-    const allTextHandlers = [weatherQueryHandler, youtubeQueryHandler];
+    const allCallbacks = [playCallback, youtubeCallback, weatherCallback, volumeCallback];
+    const allTextHandlers = [weatherQueryHandler, youtubeQueryHandler, volumeQueryHandler];
 
     const botApp = new BotApp(configService, authMiddleware, allCommands, allCallbacks, allTextHandlers);
 

@@ -25,4 +25,17 @@ export class SpotifyControlFacade {
         this._isRunning = false;
         console.log("Музыкальный режим выключен");
     }
+
+    public setVolume(level: number): void {
+        if (!this._isRunning) {
+            console.log("Spotify не запущен");
+            return;
+        }
+        if (level < 0 || level > 100) {
+            console.log("Громкость должна быть от 0 до 100");
+            return;
+        }
+        this._spotifyService.setVolume(level);
+        console.log(`Громкость установлена: ${level}`);
+    }
 }
