@@ -15,4 +15,7 @@ export class LinuxAdapter implements IOperatingSystem {
     setVolume(level: number): void {
         exec(`pactl set-sink-volume @DEFAULT_SINK@ ${level}%`);
     }
+    openUrl(url: string): void {
+        exec(`xdg-open "${url}"`);
+    }
 }

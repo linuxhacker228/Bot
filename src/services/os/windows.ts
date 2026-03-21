@@ -15,4 +15,7 @@ export class WindowsAdapter implements IOperatingSystem {
     public setVolume(level: number): void {
         exec(`nircmd setvolume 0 ${level * 655} 0`);
     }
+    public openUrl(url: string): void {
+        exec(`start "${url}"`);
+    }
 }

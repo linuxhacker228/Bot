@@ -47,7 +47,7 @@ const startBot = () => {
     }
 
     const spotifyService = new SpotifyService(currentOS);
-    const youtubeService = new YoutubeService();
+    const youtubeService = new YoutubeService(currentOS);
     const weatherService = new Weather(configService);
 
     const spotifyControl = new SpotifyControlFacade(spotifyService);

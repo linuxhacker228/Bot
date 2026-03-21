@@ -15,4 +15,7 @@ export class MacAdapter implements IOperatingSystem {
     setVolume(level: number): void {
         exec(`osascript -e "set volume output volume ${level}"`);
     }
+    openUrl(url: string): void {
+        exec(`open "${url}"`);
+    }
 }
