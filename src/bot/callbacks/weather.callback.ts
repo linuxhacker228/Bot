@@ -1,19 +1,18 @@
 import { Context } from "grammy";
 import { Callback } from "./callback.class";
-import { WeatherQueryHandler } from "./weather.query";
+import { SessionManager } from "../session/session-manager";
 
 export class WeatherCallback extends Callback {
     callbackName: string = "action_weather";
-    constructor(private _weatherQueryHandler: WeatherQueryHandler) {
+    constructor(private _sessions: SessionManager) {
         super();
     }
     async execute(ctx: Context): Promise<void> {
         await ctx.answerCallbackQuery();
         await ctx.reply("Введите название города:");
         const userId = ctx.from?.id;
-        console.log('WeatherCallback: userId =', userId);
         if (userId) {
-            this._weatherQueryHandler.addUser(userId);
+            this._sessions.set(userId, "weather");
         }
     }
 }

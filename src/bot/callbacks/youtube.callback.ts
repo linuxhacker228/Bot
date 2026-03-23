@@ -1,12 +1,12 @@
 import { Context } from "grammy";
 import { Callback } from "./callback.class";
-import { YoutubeQueryHandler } from "./youtube.query";
+import { SessionManager } from "../session/session-manager";
 
 
 export class YoutubeCallback extends Callback {
     callbackName: string = "action_youtube";
 
-    constructor(private _youtubeQueryHandler: YoutubeQueryHandler) {
+    constructor(private _sessions: SessionManager) {
         super();
     };
 
@@ -15,8 +15,8 @@ export class YoutubeCallback extends Callback {
         await ctx.reply("Введи название видео для поиска:");
 
         const userId = ctx.from?.id;
-        if(userId) {
-            this._youtubeQueryHandler.addUser(userId)
+        if (userId) {
+            this._sessions.set(userId, "youtube");
         }
     }
 }

@@ -3,7 +3,7 @@ import { ConfigService } from '../services/config';
 import { Command } from './commands/command.class';
 import { AuthMiddleware } from './middlewares/auth';
 import { Callback } from './callbacks/callback.class';
-import { TextHandler } from './callbacks/text-handler.class';
+import { TextHandler } from './text-handlers/text-handler.class';
 
 
 export class BotApp {

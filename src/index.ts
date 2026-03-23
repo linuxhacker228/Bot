@@ -5,6 +5,7 @@ import { ConfigService } from "./services/config";
 import { SystemService } from "./services/system";
 import { AuthMiddleware } from "./bot/middlewares/auth";
 import { OsFactory } from "./services/os/os.factory";
+import { SessionManager } from "./bot/session/session-manager";
 import { SpotifyModule } from "./modules/spotify.module";
 import { YoutubeModule } from "./modules/youtube.module";
 import { WeatherModule } from "./modules/weather.module";
@@ -15,10 +16,11 @@ const startBot = () => {
     systemService.preventSleep();
 
     const osAdapter = OsFactory.create();
+    const sessionManager = new SessionManager();
 
-    const spotifyModule = new SpotifyModule(osAdapter);
-    const youtubeModule = new YoutubeModule(osAdapter);
-    const weatherModule = new WeatherModule(configService);
+    const spotifyModule = new SpotifyModule(osAdapter, sessionManager);
+    const youtubeModule = new YoutubeModule(osAdapter, sessionManager);
+    const weatherModule = new WeatherModule(configService, sessionManager);
 
     const botApp = new BotApp(
         configService,
