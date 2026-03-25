@@ -18,4 +18,7 @@ export class WindowsAdapter implements IOperatingSystem {
     public openUrl(url: string): void {
         exec(`start "${url}"`);
     }
+    public getNameTrack(): string | void {
+        
+    }
 }

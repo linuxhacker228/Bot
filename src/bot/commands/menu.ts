@@ -13,6 +13,8 @@ export class MenuCommand extends Command {
             .text('Погода', 'action_weather')
             .row()
             .text('Установить громкость', 'action_volume')
+            .row()
+            .text("Название трека в Spotify", "action_get_name")
             .row();
 
         ctx.reply('Пульт управления ПК:', { reply_markup: keyboard });

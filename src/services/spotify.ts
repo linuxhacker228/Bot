@@ -14,4 +14,8 @@ export class SpotifyService  {
     public setVolume(level: number): void {
         this._os.setVolume(level);
     }
+    public getNameTrack(): string | void {
+        return this._os.getNameTrack();
+    }
+    
 }

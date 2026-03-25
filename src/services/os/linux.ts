@@ -18,4 +18,8 @@ export class LinuxAdapter implements IOperatingSystem {
     openUrl(url: string): void {
         exec(`xdg-open "${url}"`);
     }
+
+    getNameTrack(): string | void {
+        
+    }
 }

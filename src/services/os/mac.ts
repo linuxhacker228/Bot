@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import { exec, execSync } from "child_process";
 import { IOperatingSystem } from "../../typings";
 
 export class MacAdapter implements IOperatingSystem {
@@ -17,5 +17,8 @@ export class MacAdapter implements IOperatingSystem {
     }
     openUrl(url: string): void {
         exec(`open "${url}"`);
+    }
+    getNameTrack(): string {
+        return execSync(`osascript -e 'tell application "Spotify" to get name of current track'`).toString().trim();
     }
 }

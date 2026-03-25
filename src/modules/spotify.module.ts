@@ -9,6 +9,7 @@ import { Command } from "../bot/commands/command.class";
 import { Callback } from "../bot/callbacks/callback.class";
 import { TextHandler } from "../bot/text-handlers/text-handler.class";
 import { SessionManager } from "../bot/session/session-manager";
+import { NameTrackCallback } from "../bot/callbacks/trackName.callback";
 
 export class SpotifyModule {
     readonly commands: Command[];
@@ -24,6 +25,7 @@ export class SpotifyModule {
         this.callbacks = [
             new PlayCallback(facade),
             new VolumeCallback(sessions),
+            new NameTrackCallback(service),
         ];
         this.textHandlers = [volumeQueryHandler];
     }
