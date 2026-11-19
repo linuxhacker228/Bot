@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
+import path from 'path';
 import { WatchdogApp } from './watchdog/client';
 import { BotProcessService } from './watchdog/services/process';
 import { WakeCommand } from './watchdog/commands/wake';
 import { KillCommand } from './watchdog/commands/kill';
 import { StatusCommand } from './watchdog/commands/status';
 
-dotenv.config({ path: '/Users/vladislavkoval/TypeScript/Lesson_10/.env' });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const TOKEN = process.env.WATCHDOG_TOKEN;
 if (!TOKEN) throw new Error('WATCHDOG_TOKEN not found in .env');

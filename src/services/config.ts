@@ -1,10 +1,11 @@
 import dotenv from "dotenv";
+import path from "path";
 
 export class ConfigService {
 
     private _config: dotenv.DotenvParseOutput;
     public constructor() {
-        const cgf = dotenv.config({path:"../.env"});
+        const cgf = dotenv.config({ path: path.resolve(__dirname, "../../.env") });
         if(cgf.error) {
             throw new Error("Not find .env file")
         }

@@ -1,8 +1,11 @@
 import { exec, spawn } from 'child_process';
+import path from 'path';
 
 export class BotProcessService {
-    private readonly _entry = '/Users/vladislavkoval/TypeScript/Lesson_10/src/index.ts';
-    private readonly _cwd = '/Users/vladislavkoval/TypeScript/Lesson_10/src';
+    private readonly _cwd = process.env.BOT_CWD ?? path.resolve(__dirname, '../..');
+    private readonly _entry = process.env.BOT_ENTRY ?? path.join(this._cwd, 'index.ts');
+    private readonly _tsNode = process.env.TS_NODE_BIN ?? 'ts-node';
+    private readonly _childPath = process.env.CHILD_PATH ?? '/usr/local/bin:/usr/bin:/bin';
 
     isRunning(): Promise<boolean> {
         return new Promise((resolve) => {
@@ -13,11 +16,11 @@ export class BotProcessService {
     }
 
     start(): void {
-        const child = spawn('/usr/local/bin/ts-node', [this._entry], {
+        const child = spawn(this._tsNode, [this._entry], {
             detached: true,
             stdio: ['ignore', 'ignore', 'pipe'],
             cwd: this._cwd,
-            env: { ...process.env, PATH: '/usr/local/bin:/usr/bin:/bin' }
+            env: { ...process.env, PATH: this._childPath }
         });
         child.stderr?.on('data', (data) => console.error('Bot error:', data.toString()));
         child.on('error', (err) => console.error('Spawn error:', err.message));
